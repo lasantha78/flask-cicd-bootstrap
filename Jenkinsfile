@@ -16,8 +16,7 @@ pipeline {
          sh 'python -m pip install --upgrade pip'   
          sh 'if [ -d ".venv" ]; then rm -Rf .venv; fi'   
          sh 'python -m venv .venv && . .venv/bin/activate'         
-         sh 'pip install -r requirements.txt'
-         sh 'pip install coverage pytest-cov nose'
+         sh 'pip install -r requirements-dev.txt'
          sh 'pytest -v -o junit_family=xunit1 --cov=. --cov-report xml:coverage.xml --junitxml=nosetests.xml'             
          }
       }  
