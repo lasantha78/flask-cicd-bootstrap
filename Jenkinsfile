@@ -22,8 +22,7 @@ pipeline {
         	branch 'main'  
       	}
         steps {     
-            sh 'export PATH=/home/jenkins/software/sonar-scanner/bin:$PATH'   	
-        		sh 'sonar-scanner -Dsonar.host.url=$SONARQUBE_URL -Dsonar.login=$SONARQUBE_KEY'                                                       
+            sh 'export PATH=/home/jenkins/software/sonar-scanner/bin:$PATH && sonar-scanner -Dsonar.host.url=$SONARQUBE_URL -Dsonar.login=$SONARQUBE_KEY'                                                       
         }
       }                 
       /**
