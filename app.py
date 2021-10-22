@@ -1,8 +1,11 @@
 
 from flask import Flask
+from flask_wtf.csrf import CSRFProtect
 from service.operations import mysum
 
 app = Flask(__name__)
+csrf = CSRFProtect()
+csrf.init_app(app)
 
 @app.route('/hello')
 def hello_world():
