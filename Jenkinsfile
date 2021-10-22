@@ -16,8 +16,7 @@ pipeline {
          sh 'python -m pip install --upgrade pip'
          sh 'if [ -d "venv" ]; then rm -Rf venv; fi && virtualenv venv && . venv/bin/activate && pip install -r requirements-dev.txt && pytest -v -o junit_family=xunit1 --cov=. --cov-report xml:coverage.xml --junitxml=nosetests.xml'             
          }
-      }  
-      /**               
+      }                     
       stage('analysis') {
       	when {
         	branch 'main'  
@@ -26,6 +25,7 @@ pipeline {
         		sh 'sonar-scanner -Dsonar.host.url=$SONARQUBE_URL -Dsonar.login=$SONARQUBE_KEY'                                                       
         }
       }                 
+      /**
       stage('container build and push') {
       	when {
         	branch 'main'  
