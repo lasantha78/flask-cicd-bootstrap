@@ -13,11 +13,8 @@ pipeline {
   stages {  	    	  
       stage('compile') {
          steps {
-         sh 'python -m pip install --upgrade pip'   
-         sh 'if [ -d ".venv" ]; then rm -Rf .venv; fi'   
-         sh 'python -m venv .venv && . .venv/bin/activate'         
-         sh 'pip install -r requirements-dev.txt'
-         sh 'pytest -v -o junit_family=xunit1 --cov=. --cov-report xml:coverage.xml --junitxml=nosetests.xml'             
+         sh 'python -m pip install --upgrade pip'
+         sh 'if [ -d "venv" ]; then rm -Rf venv; fi && virtualenv venv && . venv/bin/activate && pip install -r requirements-dev.txt pytest -v -o junit_family=xunit1 --cov=. --cov-report xml:coverage.xml --junitxml=nosetests.xml'             
          }
       }  
       /**               
