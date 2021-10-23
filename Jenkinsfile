@@ -24,8 +24,7 @@ pipeline {
         steps {     
             sh 'export PATH=/home/jenkins/software/sonar-scanner/bin:$PATH && sonar-scanner -Dsonar.host.url=$SONARQUBE_URL -Dsonar.login=$SONARQUBE_KEY'                                                       
         }
-      }                 
-      /**
+      }                       
       stage('container build and push') {
       	when {
         	branch 'main'  
@@ -35,7 +34,6 @@ pipeline {
 				sh 'echo "$DOCKER_PASSWORD" | docker login --username $DOCKER_USER_NAME --password-stdin'				
 				sh 'docker push $REPOSITORY:$VERSION'
          }
-      }      
-      **/
+      }
   }  
 }
